@@ -11,11 +11,18 @@ export function groupByKey<T>(object: T[], key: keyof T): GroupsMap<T> {
     if (keyValue !== undefined && keyValue !== null) {
       const keyString = String(keyValue);
 
-      if (!finalObject.hasOwnProperty(keyString)) {
-        finalObject[keyString] = [];
-      }
+      if (keyString !== '') {
+        const isKeyExist = Object.prototype.hasOwnProperty.call(
+          finalObject,
+          keyString,
+        );
 
-      finalObject[keyString].push(el);
+        if (!isKeyExist) {
+          finalObject[keyString] = [];
+        }
+
+        finalObject[keyString].push(el);
+      }
     }
   });
 
