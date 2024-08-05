@@ -8,10 +8,10 @@ export function groupByKey<T>(object: T[], key: keyof T): GroupsMap<T> {
   object.forEach((el) => {
     const keyValue = el[key];
 
-    if (keyValue !== undefined && keyValue !== null) {
+    if (keyValue) {
       const keyString = String(keyValue);
 
-      if (keyString !== '') {
+      if (keyString.trim()) {
         const isKeyExist = Object.prototype.hasOwnProperty.call(
           finalObject,
           keyString,
